@@ -1,0 +1,15 @@
+<div class="grid">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <p-tabView [style]="{'margin-left':'20px','margin-right':'20px','margin-bottom':'20px'}"
+            (onChange)="handleChange($event)">
+            <p-tabPanel header="New Email">
+                <app-email *ngIf="activeTab === 0"></app-email>
+            </p-tabPanel>
+            <p-tabPanel header="History">
+                <app-history *ngIf="activeTab === 1"></app-history>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+    <div class="col-3"></div>
+</div>

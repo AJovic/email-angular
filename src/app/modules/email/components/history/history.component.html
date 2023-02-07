@@ -1,0 +1,71 @@
+<div class="card">
+    <p-table #dt  [value]="emails" dataKey="id" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        [globalFilterFields]="['from']"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]" [autoLayout]="true">
+        <ng-template pTemplate="caption" >
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th>
+                <th>From</th>
+                <th>To</th>
+                <th>Subject</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-email let-expanded="expanded">
+            <tr>
+                <td>
+                    <button type="button" pButton pRipple [pRowToggler]="email" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                </td>
+                <td>{{email.from}}</td>
+                <td>{{email.to}}</td>
+                <td>{{email.subject}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-email>
+            <tr>
+                <td colspan="7">
+                    <div class="p-3">
+                        <h3>Content</h3>
+                        <p>{{email.content}}</p>
+                        <!-- <p-table [value]="product.orders" dataKey="id">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th pSortableColumn="id">Id <p-sortIcon field="price"></p-sortIcon></th>
+                                    <th pSortableColumn="customer">Customer <p-sortIcon field="customer"></p-sortIcon></th>
+                                    <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+                                    <th pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
+                                    <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                                    <th style="width: 4rem"></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-order>
+                                <tr>
+                                    <td>{{order.id}}</td>
+                                    <td>{{order.customer}}</td>
+                                    <td>{{order.id}}</td>
+                                    <td>{{order.amount | currency:'USD'}}</td>
+                                    <td><span [class]="'order-badge order-' + order.status.toLowerCase()">{{order.status}}</span></td>
+                                    <td><p-button type="button" icon="pi pi-search"></p-button></td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="6">There are no order for this product yet.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table> -->
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,93 @@
+        <form [formGroup]="emailForm" (ngSubmit)="saveEmail()">
+            <div class="card">
+
+                <div class="field">
+                    <label for="from">From</label>
+                    <input id="from" type="email" formControlName="from" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.from.errors?.required">
+                        <span style="color:red">From is required</span>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.from.errors?.email">
+                        <span style="color:red">Email is not corect</span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="to">To</label>
+                    <input id="to" type="email" formControlName="to" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.to.errors?.required">
+                        <span style="color:red">To is required</span>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.to.errors?.email">
+                        <span style="color:red">Email is not corect</span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="cc">CC</label>
+                    <input id="cc" type="text" formControlName="cc"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                </div>
+                <div class="invalid-feedback" *ngIf="isSubmitted && f.cc.errors?.required">
+                    <span style="color:red">CC is required</span>
+                </div>
+                <div class="invalid-feedback" *ngIf="isSubmitted && f.cc.errors">
+                    <span style="color:red">Email is not corect</span>
+                </div>
+
+                <br>
+
+                <div class="formgroup-inline">
+
+                    <div class="field-radiobutton">
+                        <input type="radio" id="1" value=1 formControlName="importance">
+                        <label for=1>Low</label>
+                    </div>
+
+                    <div class="field-radiobutton">
+                        <input type="radio" id="2" value="2" formControlName="importance">
+                        <label for="2">Normal</label>
+                    </div>
+
+                    <div class="field-radiobutton">
+                        <input type="radio" id="3" value="3" formControlName="importance">
+                        <label for="3">High</label>
+                    </div>
+
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.importance.errors?.required">
+                        <span style="color:red">To is required</span>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="field">
+                    <label for="subject">Subject</label>
+                    <input id="to" type="text" formControlName="subject" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.subject.errors?.required">
+                        <span style="color:red">Subject is required</span>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label for="content">Content</label>
+
+                    <textarea id="to" type="text" rows="6" formControlName="content" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                    <div class="invalid-feedback" *ngIf="isSubmitted && f.content.errors?.required">
+                        <span style="color:red">Content is required</span>
+                    </div>
+                </div>
+
+                <button type="submit" pButton pRipple label="Send"  class="p-button-text"></button>
+                <button type="submit" pButton pRipple label="Cancel" class="p-button-text"  style="color:red" (click)="cancel()"></button>
+
+            </div>
+        </form>
+
+        <p-toast></p-toast>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
